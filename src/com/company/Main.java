@@ -5,10 +5,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public char ceaserEncrypt(int cypher, char bogstav){
+    public char ceaserEncryptBoth(int cypher, char bogstav){
         int encryption = bogstav - 'a'+cypher;
         if(encryption>25) {
             encryption=encryption-26;
+        }
+        else if (encryption<0){
+            encryption=encryption+26;
         }
         char krypteret = (char)(encryption+'a');
         return krypteret;
@@ -21,7 +24,7 @@ public class Main {
         System.out.println("Indtast dit cypher-tal");   // Kun positive tal
         int cypherTal = sc.nextInt();
         for (int i =0;i<besked.length();i++ ){
-            text.append(ceaserEncrypt(cypherTal,besked.charAt(i)));
+            text.append(ceaserEncryptBoth(cypherTal,besked.charAt(i)));
         }
         return text;
     }
