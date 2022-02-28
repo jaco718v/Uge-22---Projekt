@@ -8,14 +8,14 @@ public class Main {
     public char ceaserCrypt(int cypher, char bogstav){
         char krypteret = bogstav;
         if(bogstav !=' '){
-        int encryption = bogstav - 'a'+cypher;
+        int encryption = bogstav - 'A'+cypher;
         if(encryption>25) {
             encryption=encryption-26;
         }
         else if (encryption<0){
             encryption=encryption+26;
         }
-        krypteret = (char)(encryption+'a');}
+        krypteret = (char)(encryption+'A');}
         return krypteret;
     }
 
