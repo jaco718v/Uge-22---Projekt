@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    public char ceaserEncryptBoth(int cypher, char bogstav){
+    public char ceaserCrypt(int cypher, char bogstav){
+        char krypteret = bogstav;
+        if(bogstav !=' '){
         int encryption = bogstav - 'a'+cypher;
         if(encryption>25) {
             encryption=encryption-26;
@@ -13,25 +15,26 @@ public class Main {
         else if (encryption<0){
             encryption=encryption+26;
         }
-        char krypteret = (char)(encryption+'a');
+        krypteret = (char)(encryption+'a');}
         return krypteret;
     }
-        //Mellemrum virker nok ikke
+
     public StringBuilder ceaserEncString(String besked){
         StringBuilder text = new StringBuilder();
         Scanner sc = new Scanner(System.in);
-        besked = besked.toLowerCase(Locale.ROOT);
-        System.out.println("Indtast dit cypher-tal");   // Kun positive tal
+        besked = besked.toUpperCase(Locale.ROOT);
+        System.out.println("Indtast dit cypher-tal");
         int cypherTal = sc.nextInt();
         for (int i =0;i<besked.length();i++ ){
-            text.append(ceaserEncryptBoth(cypherTal,besked.charAt(i)));
+            text.append(ceaserCrypt(cypherTal,besked.charAt(i)));
         }
         return text;
     }
 
+
     public static void main(String[] args) {
         Main obj = new Main();
-        StringBuilder text = obj.ceaserEncString("KaGe");
+        StringBuilder text = obj.ceaserEncString("Ka Ge");
         System.out.println(text);
     }
 }
