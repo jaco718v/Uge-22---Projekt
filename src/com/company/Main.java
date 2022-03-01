@@ -4,8 +4,9 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
+    Scanner sc = new Scanner(System.in);
 
-    public char ceaserCrypt(int cypher, char bogstav){
+    public char caeserCypher(int cypher, char bogstav){
         char krypteret = bogstav;
         if(bogstav !=' '){
         int encryption = bogstav - 'A'+cypher;
@@ -19,14 +20,13 @@ public class Main {
         return krypteret;
     }
 
-    public StringBuilder ceaserEncString(String besked){
+    public StringBuilder caeserCypherString(String inputString, int cypherTal){
         StringBuilder text = new StringBuilder();
-        Scanner sc = new Scanner(System.in);
-        besked = besked.toUpperCase(Locale.ROOT);
+        inputString = inputString.toUpperCase(Locale.ROOT);
         System.out.println("Indtast dit cypher-tal");
-        int cypherTal = sc.nextInt();
-        for (int i =0;i<besked.length();i++ ){
-            text.append(ceaserCrypt(cypherTal,besked.charAt(i)));
+        cypherTal = sc.nextInt();
+        for (int i =0;i<inputString.length();i++ ){
+            text.append(caeserCypher(cypherTal,inputString.charAt(i)));
         }
         return text;
     }
@@ -34,7 +34,11 @@ public class Main {
 
     public static void main(String[] args) {
         Main obj = new Main();
-        StringBuilder text = obj.ceaserEncString("Ka Ge");
+        System.out.println("Indtast det der skal krypteres/afkrypteres");
+        String inputString = obj.sc.next();
+        System.out.println("Indtast cypher tal");
+        int cypherTal = obj.sc.nextInt();
+        StringBuilder text = obj.caeserCypherString(inputString,cypherTal);
         System.out.println(text);
     }
 }
